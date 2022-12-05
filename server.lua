@@ -2,11 +2,11 @@ local QBCore = exports["qb-core"]:GetCoreObject()
 
 -- Callbacks
 QBCore.Functions.CreateCallback("loadList", function(source, cb)
-	local result = MySQL.query.await("SELECT * FROM bilbutik", {})
+	local result = MySQL.query.await("SELECT * FROM `bilbutik`", {})
 	cb(result)
 end)
 -- Events
-RegisterNetEvent('sellvehicle', function(pris, vehName)
+RegisterNetEvent('sellVehicle', function(pris, vehName)
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
     local vehicle = GetVehiclePedIsIn(GetPlayerPed(src), false)
@@ -18,6 +18,15 @@ RegisterNetEvent('sellvehicle', function(pris, vehName)
         plate = vehPlate,
         price = pris,
     })
+end)
+
+RegisterNetEvent('buyVehicle', function(plate)
+    local src = source
+    local Player = QBCore.Functions.GetPlayer(src)
+    local res = MySQL.query.await("SELECT * FROM `bilbutik` WHERE plate=:plate", {plate = plate})
+    if not res[1] then return QBCore.Functions.Notify(src, "Der er ikke noget køretøj med pladen: "..plate.." til salg!", "error") end
+    MySQL.update("DELETE FROM `bilbutik` WHERE plate=:plate", {plate = plate})
+    QBCore.Functions.Notify(src, "Tillykke med dit nye køretøj!", "success")
 end)
 
 AddEventHandler('onResourceStart', function(resourceName)

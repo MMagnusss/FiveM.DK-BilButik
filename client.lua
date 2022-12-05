@@ -12,7 +12,7 @@ RegisterCommand("sellcar", function(source, args)
     if not pris or tonumber(pris) >= 100000000 then return QBCore.Functions.Notify("Prisen skal være under 100 millioner", "error") end
     local vehicle = GetVehiclePedIsIn(PlayerPedId(), false)
     -- if not exports["qb-vehiclekeys"]:HasKeys(QBCore.Functions.GetPlate(vehicle)) then return QBCore.Functions.Notify("Du ejer ikke dette køretøj!", "error") end -- Virker ikke da den returnerer true hele tiden
-    TriggerServerEvent('sellvehicle', pris, GetDisplayNameFromVehicleModel(GetEntityModel(vehicle)):lower())
+    TriggerServerEvent('sellVehicle', pris, GetDisplayNameFromVehicleModel(GetEntityModel(vehicle)):lower())
 end)
 -- /buycar <plade>
 
@@ -25,6 +25,12 @@ RegisterCommand("carlist", function(source)
         open = menuOpen,
         loadList = true,
     })
+end)
+
+RegisterCommand("buycar", function(source, args)
+    local plate = args[1]
+    if not plate then return QBCore.Functions.Notify("Du har ikke specificeret en nummerplade!", "error") end
+    TriggerServerEvent('buyVehicle', plate)
 end)
 
 -- NUI Callbacks
