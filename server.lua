@@ -1,5 +1,10 @@
 local QBCore = exports["qb-core"]:GetCoreObject()
 
+-- Callbacks
+QBCore.Functions.CreateCallback("loadList", function(source, cb)
+	local result = MySQL.query.await("SELECT * FROM bilbutik", {})
+	cb(result)
+end)
 -- Events
 RegisterNetEvent('sellvehicle', function(pris, vehName)
     local src = source

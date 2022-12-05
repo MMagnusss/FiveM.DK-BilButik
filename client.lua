@@ -23,7 +23,19 @@ RegisterCommand("carlist", function(source)
     SendNUIMessage({
         resource = "Bilbutik",
         open = menuOpen,
+        loadList = true,
     })
+end)
+
+-- NUI Callbacks
+
+RegisterNUICallback("loadList", function()
+    QBCore.Functions.TriggerCallback("loadList", function(list)
+        SendNUIMessage({
+            resource = "Bilbutik",
+            list = list,
+        })
+    end)
 end)
 
 RegisterNUICallback("close", function()
@@ -31,6 +43,6 @@ RegisterNUICallback("close", function()
     SetNuiFocus(menuOpen, menuOpen)
     SendNUIMessage({
         resource = "Bilbutik",
-        open = menuOpen,
+        close = true,
     })
 end)

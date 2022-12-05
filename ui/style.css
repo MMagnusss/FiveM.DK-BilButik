@@ -7,4 +7,24 @@
     height: 80vh;
     background-color: rgb(30, 30, 30);
     border-radius: 15px;
+    padding: 50px;
+    overflow-y: scroll;
+}
+
+.carlist {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: baseline;
+    align-content: space-between;
+}
+
+.car {
+    background-color: rgb(200, 200, 200);
+    width: 12vw;
+    height: 20vh;
+    border-radius: 15px;
+    margin: 20px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
 }
