@@ -14,3 +14,20 @@ RegisterNetEvent('sellvehicle', function(pris, vehName)
         price = pris,
     })
 end)
+
+AddEventHandler('onResourceStart', function(resourceName)
+    if resourceName ~= GetCurrentResourceName() then return end
+    if GetCurrentResourceName() == "Bilbutik" then return end
+    Wait(5000)
+    print("^1Navngiv "..GetCurrentResourceName().." om til \"Bilbutik\"")
+    print("^1Navngiv "..GetCurrentResourceName().." om til \"Bilbutik\"")
+    print("^1Navngiv "..GetCurrentResourceName().." om til \"Bilbutik\"")
+    print("^1Navngiv "..GetCurrentResourceName().." om til \"Bilbutik\"")
+    print("^1Navngiv "..GetCurrentResourceName().." om til \"Bilbutik\"")
+    print("^1Navngiv "..GetCurrentResourceName().." om til \"Bilbutik\"")
+    print("^1Navngiv "..GetCurrentResourceName().." om til \"Bilbutik\"")
+    print("^1Navngiv "..GetCurrentResourceName().." om til \"Bilbutik\"")
+    print("^1Navngiv "..GetCurrentResourceName().." om til \"Bilbutik\"")
+    print("^1Navngiv "..GetCurrentResourceName().." om til \"Bilbutik\"")
+    print("^1Navngiv "..GetCurrentResourceName().." om til \"Bilbutik\"")
+end)
