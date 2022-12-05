@@ -23,6 +23,7 @@ const closeMenu = () => {
 
 const loadList = (list) => {
   $(".carlist").empty()
+  if (list.length <= 0) return $(".carlist").append(`<div class="noVehicles"><h1>Der er ingen køretøjer til salg på dette tidspunkt!</h1></div>`);
   list.forEach((veh) => {
     $(".carlist").append(
       `<div class="car">

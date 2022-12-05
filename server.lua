@@ -12,6 +12,8 @@ RegisterNetEvent('sellVehicle', function(pris, vehName)
     local vehicle = GetVehiclePedIsIn(GetPlayerPed(src), false)
     local vehPlate = GetVehicleNumberPlateText(vehicle)
     if not vehicle then return QBCore.Functions.Notify("Læs readme", "error") end
+    local res = MySQL.query.await("SELECT * FROM `bilbutik` WHERE plate=:plate", {plate = vehPlate})
+    if res[1] then return QBCore.Functions.Notify(src, "Dette køretøj er allerede til salg!", "error") end
     MySQL.insert('INSERT INTO `bilbutik` (`vehicle`, `plate`, `price`, `citizenid`) VALUES (:vehicle, :plate, :price, :citizenid)', {
         citizenid = Player.PlayerData.citizenid,
         vehicle = vehName,
